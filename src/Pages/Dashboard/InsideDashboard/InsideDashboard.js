@@ -13,7 +13,7 @@ const InsideDashboard = () => {
     const [cameras, setCameras] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/explores?email=${user.email}`)
+        fetch(`https://dry-wildwood-45412.herokuapp.com/explores?email=${user.email}`)
             .then(res => res.json())
             .then(data => setCameras(data));
     }, [])

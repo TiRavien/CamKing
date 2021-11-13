@@ -10,7 +10,7 @@ const Explores = () => {
     const [explore, setExplore] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/explores')
+        fetch('https://dry-wildwood-45412.herokuapp.com/explores')
             .then(res => res.json())
             .then(data => setExplore(data))
     }, [])

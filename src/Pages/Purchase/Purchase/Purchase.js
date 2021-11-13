@@ -13,7 +13,7 @@ const Purchase = () => {
     const [service, setService] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/explores/${serviceId}`)
+        fetch(`https://dry-wildwood-45412.herokuapp.com/explores/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 setService(data);
@@ -25,18 +25,26 @@ const Purchase = () => {
     //     order.serviceId = serviceId;
     //     order.service = service;
     //     order.status = "Pending";
-    //     axios.post(getUrl(`order`), order)
-    //         .then(res => {
-    //             if (res.data.insertedId) {
-    //                 history.push(`/myOrder`)
-    //                 alert("Successfully Added");
+    //     fetch('http://localhost:5000/appointments', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(appointment)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.insertedId) {
+    //                 setBookingSuccess(true);
+    //                 handleBookingClose();
     //             }
-    //             else {
-    //                 alert("Already Added");
-    //             }
-    //         })
-    // }; onSubmit={handleSubmit(onSubmit)}
-    
+    //         });
+
+    //     e.preventDefault();
+    // }
+    // onSubmit={handleSubmit(onSubmit)}
+    // };
+
 
 
     return (
@@ -45,9 +53,9 @@ const Purchase = () => {
                 <Card>
                     <Card.Img variant="top" src={service.img} />
                     <Card.Body>
-                        <Card.Title>{service.Name}</Card.Title>
+                        <Card.Title>{service.name}</Card.Title>
                         <Card.Text>
-                            {service.description}
+                            {service.describe}
                         </Card.Text>
                         <Card.Text>
                             ${service.price}
@@ -58,7 +66,7 @@ const Purchase = () => {
             <div className="col-lg-4 mb-3">
                 <h4>Book a Favourite Camera</h4>
                 <p>Make sure fill up the Form</p>
-                <form>
+                <form >
                     <div className="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         <input type="text" class="form-control" defaultValue={user.name} {...register("name")} />

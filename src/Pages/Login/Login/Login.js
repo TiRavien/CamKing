@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Container, Grid, TextField, Typography,CircularProgress, Alert } from '@mui/material';
-import { NavLink, useLocation,useHistory } from 'react-router-dom';
+import { Button, Container, Grid, TextField, Typography, CircularProgress, Alert } from '@mui/material';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
     }
 
     const handleLogin = e => {
-        loginUser(data.email, data.password);
+        loginUser(data.email, data.password, location, history);
         e.preventDefault();
     }
     return (
