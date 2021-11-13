@@ -4,10 +4,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import { Grid, Typography, Container } from '@mui/material';
+import { Grid, Typography, Container} from '@mui/material';
+import {Link} from 'react-router-dom';
 
 const Explore = (props) => {
-    const { name, img, describe, price } = props.explore;
+    const { _id, name, img, describe, price } = props.explore || {};
     return (
         <Grid item xs={4} sm={4} md={6}>
             <Container>
@@ -30,9 +31,11 @@ const Explore = (props) => {
                             {describe}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">Purchase Now</Button>
-                    </CardActions>
+                    
+                        <Link to={`/explores/${_id}`}>
+                            Purchase Now...
+                        </Link>
+                    
                 </Card>
             </Container>
         </Grid>

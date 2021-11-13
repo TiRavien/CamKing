@@ -5,9 +5,6 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PersonIcon from '@mui/icons-material/Person';
 import { Rating, Typography } from '@mui/material';
 
-
-
-/*  */
 const Review = (props) => {
     const [value, setValue] = React.useState(5);
 

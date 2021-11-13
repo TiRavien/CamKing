@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Container, Grid, TextField, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Button, Container, Grid, TextField, Typography,CircularProgress, Alert } from '@mui/material';
+import { NavLink, useLocation,useHistory } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const Login = () => {
     const [data, setData] = useState({});
+    const { user, loginUser, isLoading, error } = useAuth();
 
-    const handleChange = e => {
+    const location = useLocation();
+    const history = useHistory();
+
+    const handleBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
         // console.log(field, data);
@@ -15,7 +20,7 @@ const Login = () => {
     }
 
     const handleLogin = e => {
-        alert("submit")
+        loginUser(data.email, data.password);
         e.preventDefault();
     }
     return (
@@ -25,14 +30,14 @@ const Login = () => {
                     <Typography variant="h6" gutterBottom component="div">
                         Login
                     </Typography>
-                    <form onSubmit={handleLogin}>
+                    {!isLoading && <form onSubmit={handleLogin}>
                         <TextField
                             sx={{ width: '50%', m: 2 }}
                             id="standard-basic"
                             label="Email"
                             type="email"
                             name="email"
-                            onChange={handleChange}
+                            onBlur={handleBlur}
                             variant="standard"
                         />
                         <TextField
@@ -41,7 +46,7 @@ const Login = () => {
                             label="Password"
                             type="password"
                             name="password"
-                            onChange={handleChange}
+                            onBlur={handleBlur}
                             autoComplete="current-password"
                             variant="standard"
                         />
@@ -49,7 +54,10 @@ const Login = () => {
                         <NavLink style={{ textDecoration: 'none' }} to="/register">
                             <Button sx={{ width: '50%', m: 2 }} size="medium">New user? Go to Register</Button>
                         </NavLink>
-                    </form>
+                    </form>}
+                    {isLoading && <CircularProgress />}
+                    {user?.email && <Alert severity="success">Login Successfull!</Alert>}
+                    {error && <Alert severity="error">{error}</Alert>}
                 </Grid>
             </Grid>
         </Container >
